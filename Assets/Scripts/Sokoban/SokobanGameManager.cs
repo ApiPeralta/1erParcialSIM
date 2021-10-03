@@ -50,7 +50,7 @@ public class SokobanGameManager : MonoBehaviour
             orientacionJugador = "izquierda";
             mover();
         }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))                 //Aca agregue que identifique el abajo e izquierda.
         {
             orientacionJugador = "abajo";
             mover();
@@ -76,6 +76,7 @@ public class SokobanGameManager : MonoBehaviour
             //TIP: pilaTablerosAnteriores.Push(tablAux);
 
             Vector2 posicionJugador = new Vector2(nivel.Tablero.damePosicionObjeto("Jugador").x, nivel.Tablero.damePosicionObjeto("Jugador").y);
+
             GameObject objProximo, objProximoProximo;
             objProximo = nivel.Tablero.dameObjeto(posicionJugador, orientacionJugador, 1);
             objProximoProximo = nivel.Tablero.dameObjeto(posicionJugador, orientacionJugador, 2);
@@ -87,8 +88,11 @@ public class SokobanGameManager : MonoBehaviour
             }
             else
             {
-                if (objProximo != null && objProximo.CompareTag("bloque") && objProximoProximo != null)
+                if (objProximo.CompareTag("bloque") && objProximoProximo.CompareTag("bloque"))
                 {
+                    nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
+                }
+                else {                                                                                                //Aca hice que no pueda mover los 2 bloques pegados
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
                     {
                         nivel.Tablero.setearObjeto(casillero, posicionJugador);

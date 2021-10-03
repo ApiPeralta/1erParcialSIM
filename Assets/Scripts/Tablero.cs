@@ -43,7 +43,7 @@ public class Tablero
                 valorY = offset;
                 break;
             case "izquierda":
-                valorX = -offset;
+                valorX = -offset;           //Aca hice que se mueva para abajo e izquierda
                 valorY = 0;
                 break;
 
@@ -75,7 +75,7 @@ public class Tablero
                 break;
             case "arriba":
                 valorY = offset;
-                break;
+                break;                  //Aca hice que se mueva abajo e izquierda
             case "abajo":
                 valorY = -offset;
                 break;
