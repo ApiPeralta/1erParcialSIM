@@ -42,6 +42,16 @@ public class Tablero
                 valorX = 0;
                 valorY = offset;
                 break;
+            case "izquierda":
+                valorX = -offset;
+                valorY = 0;
+                break;
+
+            case "abajo":
+                valorX = 0;
+                valorY = -offset;
+                break;
+        
         }
         casilleros[(int)origen.x + valorX, (int)origen.y + valorY] = objeto;
     }
@@ -65,6 +75,12 @@ public class Tablero
                 break;
             case "arriba":
                 valorY = offset;
+                break;
+            case "abajo":
+                valorY = -offset;
+                break;
+            case "izquierda":
+                valorX = -offset;
                 break;
         }
 
