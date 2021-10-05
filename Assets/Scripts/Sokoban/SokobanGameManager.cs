@@ -80,23 +80,30 @@ public class SokobanGameManager : MonoBehaviour
             GameObject objProximo, objProximoProximo;
             objProximo = nivel.Tablero.dameObjeto(posicionJugador, orientacionJugador, 1);
             objProximoProximo = nivel.Tablero.dameObjeto(posicionJugador, orientacionJugador, 2);
-
-            if (objProximo != null && objProximo.CompareTag("casillero"))
+            if(objProximo == null && objProximoProximo == null)
             {
-                nivel.Tablero.setearObjeto(casillero, posicionJugador);
-                nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
+                nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);   //correccion error fin de mapa
             }
             else
             {
-                if (objProximo.CompareTag("bloque") && objProximoProximo.CompareTag("bloque"))
+                if (objProximo != null && objProximo.CompareTag("casillero"))
                 {
-                    nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
-                }
-                else {                                                                                                //Aca hice que no pueda mover los 2 bloques pegados
+                    nivel.Tablero.setearObjeto(casillero, posicionJugador);
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
+                }
+                else
+                {
+                    if (objProximo.CompareTag("bloque") && objProximoProximo.CompareTag("bloque"))
                     {
-                        nivel.Tablero.setearObjeto(casillero, posicionJugador);
-                        nivel.Tablero.setearObjeto(bloque, posicionJugador, orientacionJugador, 2); ;
+                        nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
+                    }
+                    else
+                    {                                                                                                //Aca hice que no pueda mover los 2 bloques pegados
+                        nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
+                        {
+                            nivel.Tablero.setearObjeto(casillero, posicionJugador);
+                            nivel.Tablero.setearObjeto(bloque, posicionJugador, orientacionJugador, 2); ;
+                        }
                     }
                 }
             }
