@@ -7,7 +7,7 @@ public class SokobanGameManager : MonoBehaviour
     Nivel nivel, nivelAux;
     GameObject casillero, casilleroTarget, pared, jugador, bloque;
     List<Vector2> posOcupadasEsperadasCasillerosTarget;
-    Stack pilaTablerosAnteriores;
+    
 
     string orientacionJugador;
     string nombreNivelActual = "Nivel1";
@@ -73,7 +73,8 @@ public class SokobanGameManager : MonoBehaviour
             tablAux.setearObjetos(pared, nivel.Tablero.damePosicionesObjetos("Pared"));
             tablAux.setearObjetos(jugador, nivel.Tablero.damePosicionesObjetos("Jugador"));
 
-            //TIP: pilaTablerosAnteriores.Push(tablAux);
+            Stack myStack = new Stack();
+            myStack.Push("Hello");
 
             Vector2 posicionJugador = new Vector2(nivel.Tablero.damePosicionObjeto("Jugador").x, nivel.Tablero.damePosicionObjeto("Jugador").y);
 
@@ -86,7 +87,11 @@ public class SokobanGameManager : MonoBehaviour
             }
             else
             {
-                if (objProximo != null && objProximo.CompareTag("casillero"))
+                if(objProximo.CompareTag("bloque") && objProximoProximo == null)
+                {
+                    nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
+                }
+                else if (objProximo != null && objProximo.CompareTag("casillero"))
                 {
                     nivel.Tablero.setearObjeto(casillero, posicionJugador);
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
@@ -127,7 +132,16 @@ public class SokobanGameManager : MonoBehaviour
 
     private bool ChequearVictoria(Tablero tablero)
     {
-        return false;
+        if (tablero.damePosicionesObjetos("bloque") == tablero.damePosicionesObjetos("CasillerosTarget"))
+        {
+            Debug.Log("si se puedeeeee");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Else");
+            return false;
+        }
     }
 }
 

@@ -23,13 +23,4 @@ public class Proyectiles : MonoBehaviour
             respawningTimer = UnityEngine.Random.Range(3, 5);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("jugador"))
-        {
-            Debug.Log("Hola");
-            SceneManager.LoadScene(0);
-        }
-    }
 }
