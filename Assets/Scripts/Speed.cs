@@ -16,7 +16,6 @@ public class Speed : MonoBehaviour
     {
         if (other.gameObject.CompareTag("jugador"))
         {
-            Debug.Log("Hola");
             SceneManager.LoadScene(0,LoadSceneMode.Single);
         }
     }

@@ -73,8 +73,6 @@ public class SokobanGameManager : MonoBehaviour
             tablAux.setearObjetos(pared, nivel.Tablero.damePosicionesObjetos("Pared"));
             tablAux.setearObjetos(jugador, nivel.Tablero.damePosicionesObjetos("Jugador"));
 
-            Stack myStack = new Stack();
-            myStack.Push("Hello");
 
             Vector2 posicionJugador = new Vector2(nivel.Tablero.damePosicionObjeto("Jugador").x, nivel.Tablero.damePosicionObjeto("Jugador").y);
 
@@ -96,9 +94,17 @@ public class SokobanGameManager : MonoBehaviour
                     nivel.Tablero.setearObjeto(casillero, posicionJugador);
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 1);
                 }
+                else if (objProximo.CompareTag("pared") && objProximoProximo != null)
+                {
+                    nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
+                }
                 else
                 {
                     if (objProximo.CompareTag("bloque") && objProximoProximo.CompareTag("bloque"))
+                    {
+                        nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
+                    }
+                    else if (objProximo.CompareTag("bloque") && objProximoProximo.CompareTag("pared"))
                     {
                         nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
                     }
