@@ -11,7 +11,7 @@ public class SokobanGameManager : MonoBehaviour
     Tablero tablAux;
 
     string orientacionJugador;
-    string nombreNivelActual = "Nivel2";
+    string nombreNivelActual = "Nivel3";
     bool gameOver = false;
     bool estoyDeshaciendo = false;
 
