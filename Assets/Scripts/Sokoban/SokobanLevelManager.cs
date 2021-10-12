@@ -66,7 +66,7 @@ public class SokobanLevelManager : MonoBehaviour
         List<Nivel> lstNiveles = new List<Nivel>();
         lstNiveles.Add(new Nivel("Nivel1", SokobanLevelManager.instancia.dameTableroNivel1()));
         lstNiveles.Add(new Nivel("Nivel2", SokobanLevelManager.instancia.dameTableroNivel2()));
-        lstNiveles.Add(new Nivel("Nivel3", SokobanLevelManager.instancia.dameTableroNivel2()));
+        lstNiveles.Add(new Nivel("Nivel3", SokobanLevelManager.instancia.dameTableroNivel3()));
         return lstNiveles;
     }
 

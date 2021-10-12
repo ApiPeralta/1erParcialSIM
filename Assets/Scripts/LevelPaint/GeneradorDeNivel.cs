@@ -8,10 +8,8 @@ public class GeneradorDeNivel : MonoBehaviour
     public ColorAPrefab[] colorMappings;
     public GameObject reference;
 
-
     public Tablero tablero;
     public SokobanLevelManager lvlManager;
-
 
     public void Awake()
     {
@@ -31,10 +29,8 @@ public class GeneradorDeNivel : MonoBehaviour
         {
             if (colorMapping.color.Equals(pixelColor))
             {
-
                 Vector2 position = new Vector2(x, y);
                 lvlManager.tablero.setearObjeto(colorMapping.prefab, position);
-
             }
         }
     }

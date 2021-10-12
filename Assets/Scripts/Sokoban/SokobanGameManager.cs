@@ -7,17 +7,16 @@ public class SokobanGameManager : MonoBehaviour
     Nivel nivel, nivelAux;
     GameObject casillero, casilleroTarget, pared, jugador, bloque;
     public List<Vector2> posOcupadasEsperadasCasillerosTarget;
-    Stack<Tablero> pilaTablerosAnteiores = new Stack<Tablero>();
+    Stack<Tablero> pTablerosAnteiores = new Stack<Tablero>();
     Tablero tablAux;
 
     string orientacionJugador;
     string nombreNivelActual = "Nivel3";
-    bool gameOver = false;
     bool estoyDeshaciendo = false;
 
     public List<Vector2> posicionBloque;
     public List<Vector2> ponerElBloque;
-    int cont;
+    int cont = 0;
 
     private void Start()
     {
@@ -92,7 +91,7 @@ public class SokobanGameManager : MonoBehaviour
             }
             else
             {
-                this.pilaTablerosAnteiores.Push(tablAux);
+                this.pTablerosAnteiores.Push(tablAux);
                 if (objProximo.CompareTag("bloque") && objProximoProximo == null)
                 {
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
@@ -135,9 +134,9 @@ public class SokobanGameManager : MonoBehaviour
         }
         else
         {
-            if (this.pilaTablerosAnteiores.Count > 0)
+            if (this.pTablerosAnteiores.Count > 0)
             {
-                nivel.Tablero = (Tablero)pilaTablerosAnteiores.Pop();
+                nivel.Tablero = (Tablero)pTablerosAnteiores.Pop();
                 InstanciadorPrefabs.instancia.graficarObjetosTablero(nivel.Tablero, SokobanLevelManager.instancia.dameLstPrefabsSokoban());
             }
             estoyDeshaciendo = false;
