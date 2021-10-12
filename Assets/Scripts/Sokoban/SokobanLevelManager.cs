@@ -10,9 +10,14 @@ public class SokobanLevelManager : MonoBehaviour
     public GameObject pared;
  
     public static SokobanLevelManager instancia;
+    public Texture2D mapa;
+    public Tablero tablero;
+    public GeneradorDeNivel gN;
 
     void Awake()
     {
+        gN = GameObject.Find("GeneradorDeNivel").GetComponent<GeneradorDeNivel>();
+
         if (instancia == null)
         {
             instancia = this;
@@ -60,6 +65,7 @@ public class SokobanLevelManager : MonoBehaviour
     {
         List<Nivel> lstNiveles = new List<Nivel>();
         lstNiveles.Add(new Nivel("Nivel1", SokobanLevelManager.instancia.dameTableroNivel1()));
+        lstNiveles.Add(new Nivel("Nivel2", SokobanLevelManager.instancia.dameTableroNivel2()));
         return lstNiveles;
     }
 
@@ -75,6 +81,20 @@ public class SokobanLevelManager : MonoBehaviour
         tablero.setearObjeto(casilleroTarget, new Vector2(1, 7));
         tablero.setearObjeto(casilleroTarget, new Vector2(2, 7));
         tablero.setearObjeto(casilleroTarget, new Vector2(3, 7));
+        return tablero;
+    }
+    private Tablero dameTableroNivel2()
+    {
+        tablero = SokobanLevelManager.instancia.dameTablero(8, 8);
+
+        for (int x = 0; x < mapa.width; x++)
+        {
+            for (int y = 0; y < mapa.height; y++)
+            {
+                gN.GenerateTile(x, y, mapa);
+            }
+        }
+
         return tablero;
     }
 }

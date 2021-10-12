@@ -184,12 +184,12 @@ GameObject:
   - component: {fileID: 548047423}
   - component: {fileID: 548047422}
   m_Layer: 0
-  m_Name: SokobanGameManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &548047422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,12 +427,12 @@ GameObject:
   - component: {fileID: 1736461683}
   - component: {fileID: 1736461682}
   m_Layer: 0
-  m_Name: SokobanLevelManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1736461682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2129281415
 MonoBehaviour:
   m_ObjectHideFlags: 0

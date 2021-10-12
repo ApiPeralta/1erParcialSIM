@@ -7,7 +7,8 @@ public class SokobanGameManager : MonoBehaviour
     Nivel nivel, nivelAux;
     GameObject casillero, casilleroTarget, pared, jugador, bloque;
     List<Vector2> posOcupadasEsperadasCasillerosTarget;
-    
+    Stack<Tablero> pilaTablerosAnteiores = new Stack<Tablero>();
+    Tablero tablAux;
 
     string orientacionJugador;
     string nombreNivelActual = "Nivel1";
