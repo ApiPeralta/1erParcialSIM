@@ -11,12 +11,12 @@ public class SokobanGameManager : MonoBehaviour
     Tablero tablAux;
 
     string orientacionJugador;
-    string nombreNivelActual = "Nivel3";
+    string nombreNivelActual = "Nivel1";
     bool estoyDeshaciendo = false;
 
     public List<Vector2> posicionBloque;
     public List<Vector2> ponerElBloque;
-    int cont = 0;
+    public int cont = 0;
 
     private void Start()
     {
@@ -41,6 +41,7 @@ public class SokobanGameManager : MonoBehaviour
 
     private void Update()
     {
+        posicionBloque = nivel.Tablero.damePosicionesObjetos("Bloque");
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             orientacionJugador = "derecha";
