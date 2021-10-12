@@ -16,7 +16,7 @@ public class SokobanLevelManager : MonoBehaviour
 
     void Awake()
     {
-        gN = GameObject.Find("GeneradorDeNivel").GetComponent<GeneradorDeNivel>();
+        gN = GameObject.Find("GN").GetComponent<GeneradorDeNivel>();
 
         if (instancia == null)
         {
@@ -66,6 +66,7 @@ public class SokobanLevelManager : MonoBehaviour
         List<Nivel> lstNiveles = new List<Nivel>();
         lstNiveles.Add(new Nivel("Nivel1", SokobanLevelManager.instancia.dameTableroNivel1()));
         lstNiveles.Add(new Nivel("Nivel2", SokobanLevelManager.instancia.dameTableroNivel2()));
+        lstNiveles.Add(new Nivel("Nivel3", SokobanLevelManager.instancia.dameTableroNivel2()));
         return lstNiveles;
     }
 
@@ -84,6 +85,21 @@ public class SokobanLevelManager : MonoBehaviour
         return tablero;
     }
     private Tablero dameTableroNivel2()
+    {
+        Tablero tablero = SokobanLevelManager.instancia.dameTablero(8, 8);
+
+        tablero.setearObjeto(pared, new Vector2(3, 3));
+        tablero.setearObjeto(jugador, new Vector2(2, 2));
+        tablero.setearObjeto(bloque, new Vector2(2, 4));
+        tablero.setearObjeto(bloque, new Vector2(5, 3));
+        tablero.setearObjeto(bloque, new Vector2(4, 4));
+        tablero.setearObjeto(casilleroTarget, new Vector2(1, 7));
+        tablero.setearObjeto(casilleroTarget, new Vector2(2, 7));
+        tablero.setearObjeto(casilleroTarget, new Vector2(3, 7));
+        return tablero;
+    }
+
+    private Tablero dameTableroNivel3()
     {
         tablero = SokobanLevelManager.instancia.dameTablero(8, 8);
 
