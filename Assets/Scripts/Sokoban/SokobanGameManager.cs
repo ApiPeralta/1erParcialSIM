@@ -6,14 +6,18 @@ public class SokobanGameManager : MonoBehaviour
 {
     Nivel nivel, nivelAux;
     GameObject casillero, casilleroTarget, pared, jugador, bloque;
-    List<Vector2> posOcupadasEsperadasCasillerosTarget;
+    public List<Vector2> posOcupadasEsperadasCasillerosTarget;
     Stack<Tablero> pilaTablerosAnteiores = new Stack<Tablero>();
     Tablero tablAux;
 
     string orientacionJugador;
-    string nombreNivelActual = "Nivel1";
+    string nombreNivelActual = "Nivel2";
     bool gameOver = false;
     bool estoyDeshaciendo = false;
+
+    public List<Vector2> posicionBloque;
+    public List<Vector2> ponerElBloque;
+    int cont;
 
     private void Start()
     {
@@ -29,6 +33,8 @@ public class SokobanGameManager : MonoBehaviour
     {
         nivel = SokobanLevelManager.instancia.dameNivel(nombre);
         posOcupadasEsperadasCasillerosTarget = nivel.Tablero.damePosicionesObjetos("CasilleroTarget");
+        posicionBloque = nivel.Tablero.damePosicionesObjetos("Bloque");
+        posicionBloque = nivel.Tablero.damePosicionesObjetos("bloque");
         InstanciadorPrefabs.instancia.graficarCasilleros(nivel.Tablero, casillero);
         InstanciadorPrefabs.instancia.graficarCasillerosTarget(nivel.Tablero, casilleroTarget);
         InstanciadorPrefabs.instancia.graficarObjetosTablero(nivel.Tablero, SokobanLevelManager.instancia.dameLstPrefabsSokoban());
@@ -86,7 +92,8 @@ public class SokobanGameManager : MonoBehaviour
             }
             else
             {
-                if(objProximo.CompareTag("bloque") && objProximoProximo == null)
+                this.pilaTablerosAnteiores.Push(tablAux);
+                if (objProximo.CompareTag("bloque") && objProximoProximo == null)
                 {
                     nivel.Tablero.setearObjeto(jugador, posicionJugador, orientacionJugador, 0);
                 }
@@ -128,6 +135,11 @@ public class SokobanGameManager : MonoBehaviour
         }
         else
         {
+            if (this.pilaTablerosAnteiores.Count > 0)
+            {
+                nivel.Tablero = (Tablero)pilaTablerosAnteiores.Pop();
+                InstanciadorPrefabs.instancia.graficarObjetosTablero(nivel.Tablero, SokobanLevelManager.instancia.dameLstPrefabsSokoban());
+            }
             estoyDeshaciendo = false;
         }
     }
@@ -139,16 +151,25 @@ public class SokobanGameManager : MonoBehaviour
 
     private bool ChequearVictoria(Tablero tablero)
     {
-        if (tablero.damePosicionesObjetos("bloque") == tablero.damePosicionesObjetos("CasillerosTarget"))
+        foreach (var bloque in posicionBloque)
         {
-            Debug.Log("si se puedeeeee");
+            foreach (var target in posOcupadasEsperadasCasillerosTarget)
+            {
+                if (bloque == target)
+                {
+                    cont++;
+                }
+            }
+        }
+        if (cont == 3)
+        {
             return true;
         }
         else
         {
-            Debug.Log("Else");
-            return false;
+            cont = 0;
         }
+        return false;
     }
 }
 
